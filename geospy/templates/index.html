@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map Filter</title>
+</head>
+<body>
+    <h1>Filter Map</h1>
+    <form action="/filter" method="post">
+        <label for="criteria1">Filter Criteria 1:</label>
+        <select name="criteria1">
+            <option value="none" {% if selected_criteria[0] == 'none' %}selected{% endif %}>None</option>
+            {% for criterion in criteria %}
+            <option value="{{ criterion }}" {% if selected_criteria[0] == criterion %}selected{% endif %}>{{ criterion }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="filter_value1" placeholder="Filter Value" value="{{ selected_filter_values[0] }}" />
+
+        <br>
+
+        <label for="criteria2">Filter Criteria 2:</label>
+        <select name="criteria2">
+            <option value="none" {% if selected_criteria[1] == 'none' %}selected{% endif %}>None</option>
+            {% for criterion in criteria %}
+            <option value="{{ criterion }}" {% if selected_criteria[1] == criterion %}selected{% endif %}>{{ criterion }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="filter_value2" placeholder="Filter Value" value="{{ selected_filter_values[1] }}" />
+
+        <br>
+
+        <label for="criteria3">Filter Criteria 3:</label>
+        <select name="criteria3">
+            <option value="none" {% if selected_criteria[2] == 'none' %}selected{% endif %}>None</option>
+            {% for criterion in criteria %}
+            <option value="{{ criterion }}" {% if selected_criteria[2] == criterion %}selected{% endif %}>{{ criterion }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="filter_value3" placeholder="Filter Value" value="{{ selected_filter_values[2] }}" />
+
+        <br>
+
+        <label for="kabupaten_search">Search Kabupaten:</label>
+        <input type="text" name="kabupaten_search" placeholder="Search Kabupaten" />
+
+        <br>
+
+        <label for="kab_cluster_search">Search kab_cluster:</label>
+        <input type="text" name="kab_cluster_search" placeholder="Search kab_cluster" />
+
+        <br>
+
+        <input type="submit" value="Filter">
+    </form>
+    <div id="map">
+        {{ map | safe }}
+    </div>
+</body>
+</html>
