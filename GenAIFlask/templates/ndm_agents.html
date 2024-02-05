@@ -1,0 +1,69 @@
+<!-- templates/ndm_agents.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NDM Agents</title>
+    <style>
+        /* Style for chat-like interface */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .chat-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .chat-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+        }
+
+        .user-message {
+            text-align: left;
+            color: #007BFF;
+        }
+
+        .assistant-message {
+            text-align: left;
+            color: #333;
+        }
+
+        .message-text {
+            margin: 5px 0;
+        }
+
+        .message-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>NDM Agents</h1>
+    <a href="/">Home</a> <!-- Link to the Home page (current page) -->
+    <a href="/app">App</a>   <!-- Link to the App page -->
+    <a href="/ndm_agents">NDM Agents</a> <!-- Link to the NDM Agents page -->
+    
+    <div class="chat-container">
+        {% for message in chat_history %}
+        <div class="{{ message['class'] }} chat-box">
+            <p class="message-label">{{ message['label'] }}</p>
+            <p class="message-text">{{ message['text'] }}</p>
+        </div>
+        {% endfor %}
+        
+        <form method="POST" action="/ndm_agents">
+            <label for="user_input">User Input:</label>
+            <input type="text" id="user_input" name="user_input" required>
+            <label for="option">Select an option:</label>
+            <select id="option" name="option">
+                <option value="create_sql_agent">create_sql_agent</option>
+                <option value="SQLDatabaseChain">SQLDatabaseChain</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
